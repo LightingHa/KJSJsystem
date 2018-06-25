@@ -13,25 +13,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <base href="<%=basePath%>">   
     <title>About Us | Corlate</title>
     
     <!-- core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prettyPhoto.css" rel="stylesheet">
-    <link href="../css/animate.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
-    <link href="../css/responsive.css" rel="stylesheet">
-    <link href="../css/userinfo.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/userinfo.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="../images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=basePath%>images/ico/apple-touch-icon-57-precomposed.png">
+	 <script src="<%=basePath %>js/jquery.js"></script>
 </head><!--/head-->
 
 <body>
@@ -73,17 +75,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="../images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="<%=basePath%>images/logo.png" alt="logo"></a>
                 </div>
                 
                 <div class="collapse navbar-collapse navbar-right">
                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">主页</a></li>
-                        <li><a href="blog.html">朋友圈</a></li>
-                        <li><a href="blog-item.html">说说</a></li>
-                        <li><a href="portfolio.html">留言板</a></li>
-                        <li class="active"><a href="pricing.html">个人资料</a></li> 
-                        <li><a href="shortcodes.html">相册</a></li>   　　　                    
+                        <li><a href="index.jsp">主页</a></li>
+                        <li><a href="blog.jsp">朋友圈</a></li>
+                        <li><a href="blog-item.jsp">说说</a></li>
+                        <li><a href="portfolio.jsp">留言板</a></li>
+                        <li class="active"><a href="pricing.jsp">个人资料</a></li> 
+                        <li><a href="shortcodes.jsp">相册</a></li>   　　　                    
                     </ul>
                 </div>
             </div><!--/.container-->
@@ -103,7 +105,7 @@
                 		</div>
                 		<div class="touxiang">
                 			<div class="zhaopian">
-                				<img src="../images/accordion1.png">
+                				<img src="<%=basePath%>images/accordion1.png">
                 			</div>
                 			<div class="xiugaitouxiang">
                 				<span style="color: black;">修改头像</span>
@@ -119,12 +121,11 @@
                 					<span style="color: black;">性别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="sex">男</label><br /><br />
                 					<span style="color: black;">年龄:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="age" >18</label><br /><br />
                 					<span style="color: black;">生日:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="birth">10月1日</label><br /><br />
-                					<span style="color: black;">星座:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="xingzuo">天秤座</label><br /><br />
                 					<span style="color: black;">现居地:&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="loc">杭州</label><br /><br />
                 					<span style="color: black;">血型:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="blood">O型</label><br /><br />
                 					<span style="color: black;">职业:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="job">程序员</label><br /><br />
                 					<span style="color: black;">故乡:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label name="oldloc">绍兴</label><br />
-                					<a href="editpricing.html" style="text-align: right;padding-left: 500px;">修改</a>
+                					<a href="/jsp/editpricing.jsp" style="text-align: right;padding-left: 500px;">修改</a>
                 				</table>
                 			</form>
                 			</div>
@@ -221,15 +222,18 @@
         </div>
     </footer><!--/#footer-->
 
-    <script src="js/jquery.js"></script>
+   
     <script type="text/javascript">
-        $('.carousel').carousel()
+    $(function(){
+    	  $('.carousel').carousel();
+    })
+      
     </script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/jquery.isotope.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="<%=basePath %>js/bootstrap.min.js"></script>
+    <script src="<%=basePath %>js/jquery.prettyPhoto.js"></script>
+    <script src="<%=basePath %>js/jquery.isotope.min.js"></script>
+    <script src="<%=basePath %>js/main.js"></script>
+    <script src="<%=basePath %>js/wow.min.js"></script>
 </body>
 
 </body>

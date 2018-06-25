@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <base href="<%=basePath%>">   
     <title>About Us | Corlate</title>
     
     <!-- core CSS -->
@@ -78,12 +79,12 @@
                 
                 <div class="collapse navbar-collapse navbar-right">
                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">主页</a></li>
-                        <li><a href="blog.html">朋友圈</a></li>
-                        <li><a href="blog-item.html">说说</a></li>
-                        <li><a href="portfolio.html">留言板</a></li>
-                        <li class="active"><a href="pricing.html">个人资料</a></li> 
-                        <li><a href="shortcodes.html">相册</a></li>   　　　                    
+                        <li><a href="index.jsp">主页</a></li>
+                        <li><a href="blog.jsp">朋友圈</a></li>
+                        <li><a href="blog-item.jsp">说说</a></li>
+                        <li><a href="portfolio.jsp">留言板</a></li>
+                        <li class="active"><a href="pricing.jsp">个人资料</a></li> 
+                        <li><a href="shortcodes.jsp">相册</a></li>   　　　                    
                     </ul>
                 </div>
             </div><!--/.container-->
@@ -119,7 +120,6 @@
                 					<span style="color: black;">性别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="sex" value="男"/><br /><br />
                 					<span style="color: black;">年龄:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="age"  value="18"/><br /><br />
                 					<span style="color: black;">生日:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="birth"  value="10月1号"/><br /><br />
-                					<span style="color: black;">星座:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="xingzuo"  value="天秤座"/><br /><br />
                 					<span style="color: black;">现居地:&nbsp;&nbsp;</span><input type="text" name="loc"  value="杭州"/><br /><br />
                 					<span style="color: black;">血型:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="blood"  value="O型"/><br /><br />
                 					<span style="color: black;">职业:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="job"  value="程序员"/><br /><br />
