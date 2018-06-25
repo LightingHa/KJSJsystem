@@ -35,8 +35,11 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<!-- 静态资源处理 css js imgs -->
-	<mvc:resources location="/resources/**" mapping="/resources" />
-	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+	<mvc:resources mapping="/resources/**" location="/resources" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/images/**" location="/images/" />
+	
 	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

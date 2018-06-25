@@ -1,0 +1,68 @@
+.userinfo{
+	width: 1000px;
+	height: 600px;
+	margin-left: 100px;
+	background-color:#46B8DA;
+}
+
+.usertop{
+	width: 1000px;
+	height: 50px;
+	background-color: #3FC1FE;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+
+.touxiang{
+	width: 300px;
+	height: 500px;
+	background-color:rgb(226,226,226);
+	float: left;
+}
+
+.zhaopian{
+	width: 200px;
+	height: 200px;
+	margin-left: 50px;
+	padding-top: 40px;
+	
+}
+
+.zhaopian img{
+	width: 200px;
+	height: 200px;
+}
+
+.xiugaitouxiang{
+	margin-top: 80px;
+}
+
+.info{
+	float: left;
+	width: 698px;
+	height: 500px;
+	background-color: rgb(226,226,226);
+	margin-left:2px ;
+	padding-top: 10px;
+	text-align: left;
+}
+
+
+
+.name{
+	padding-left: 20px;
+	width: 698px;
+	height: 50px;
+	
+}
+
+.ininfo{
+	margin-top: 2px;
+	width: 698px;
+	height: 440px;
+	background-color:rgb(226,226,226) ;
+	padding-left: 50px;
+	padding-top: 30px;
+}
+
+

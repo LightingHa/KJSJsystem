@@ -1,0 +1,67 @@
+.userinfo{
+	width: 1000px;
+	height: 780px;
+	margin-left: 100px;
+	margin-bottom: 50px;
+	background-color:#20B8FF;
+}
+
+.usertop{
+	width: 1000px;
+	height: 50px;
+	background-color: #3FC1FE;
+	padding-left: 10px;
+	
+}
+
+.xiangce{
+	width: 900px;
+	height: 710px;
+	background-color: rgb(226,226,246);
+	margin-left: 50px;
+	position: relative;
+}
+
+.xiangce tr{
+	height: 300px;
+}
+.xiangce tr td{
+	width: 300px;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.xiangce img{
+	width: 290px;
+	height: 260px;
+}
+
+.xiangce tr td span{
+	font-size: 30px;
+}
+
+#img1{
+	width: 290px;
+	height: 260px;
+	padding-left: 5px;
+	
+}
+
+#caozuo{
+	width: 291px;
+	height: 260px;
+	background-color: white;
+	position: absolute;
+	left: 5px;
+	top: 30px;
+	display: none;
+}
+
+.anniu{
+	width: 50px;
+	height: 30px;
+	margin-left: 130px;
+	margin-top: 100px;
+}
+
+

@@ -1,0 +1,24 @@
+.userinfo{
+	width: 1000px;
+	height: 1200px;
+	margin-left: 100px;
+	background-color:#46B8DA;
+}
+
+.usertop{
+	width: 1000px;
+	height: 50px;
+	background-color: #3FC1FE;
+	padding-left: 10px;
+	
+}
+
+.liuyan{
+	width: 1000px;
+	height: 180px;
+	background-color: #1F8C4D;
+}
+
+.fenye{
+	margin-left: 350px;
+}
