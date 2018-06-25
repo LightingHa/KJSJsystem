@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.slsd.dao.UsersDao">
+
+	<!-- 添加用户信息 -->
+	<insert id="addUsers" parameterType="Users">
+		insert into users values(#{uid},#{upwd},#{uname},#{umail},#{uheadportrait},#{usex},#{uage},#{ubirthday},#{ublood},#{uNowIn},#{uhometown},#{utype})
+	</insert>
+
+
+	<!-- 删除用户信息 -->
+	<delete id="delUsers" parameterType="int">
+		delete from Users where
+		uid=#{uid}
+	</delete>
+
+	<!-- 修改用户信息 -->
+	<update id="editUsers" parameterType="Users">
+		update Users set
+		upwd=#{upwd},umail=#{umail},uheadportrait=#{uheadportrait},
+		usex=#{usex},uage=#{uage},ubirthday=#{ubirthday},ublood=#{ublood},uNowIn=#{uNowIn},uhometown=#{uhometown},utype=#{utype}
+		where uid=#{uid}
+	</update>
+
+	<!-- 查询所有用户信息 -->
+	<select id="getAllUsers" resultType="Users">
+		select * from Users
+	</select>
+
+	<!-- 通过uid得到用户信息 -->
+	<select id="getUsersByUid" parameterType="int" resultType="Users">
+		select * from Users where uid=#{uid}
+	</select>
+
+	<!-- 分页查询用户信息 -->
+	<select id="getUsersByPage" parameterType="Map" resultType="Users">
+		select * from Users  limit #{pageStart},#{pageSize}
+	</select>
+
+</mapper>

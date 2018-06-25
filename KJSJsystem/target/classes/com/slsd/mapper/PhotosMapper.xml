@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slsd.dao.PhotosDao">
+
+	<resultMap type="Photos" id="PhotosMap">
+		<id column="pid" property="pid" />
+		<result property="paddress" column="paddress" />
+		<result property="pgroup" column="pgroup" />
+		<association property="user" javaType="com.slsd.entity.Users">
+			<id property="uid" column="puid" />
+			<result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+		<association property="talk" javaType="com.slsd.entity.Talks">
+			<id property="tid" column="ptid" />
+			<result property="tdate" column="tdate" />
+			<result property="ttext" column="ttext" />
+			<result property="ttype" column="ttype" />
+		</association>
+		
+	</resultMap>
+
+	<!-- 增加照片 -->
+	<insert id="addPhotos" parameterType="Photos" useGeneratedKeys="true"
+		keyProperty="pid">
+		insert into Photos
+		values(#{pid},#{user.uid},#{talk.tid},#{paddress},#{pgroup})
+	</insert>
+
+	<!-- 删除照片 -->
+	<delete id="delPhotos" parameterType="int">
+		delete from Photos where
+		pid=#{pid}
+	</delete>
+
+	<!-- 更新照片信息 -->
+	<update id="editPhotos" parameterType="Photos">
+		update Photos set
+		puid=#{user.uid},ptid=#{talk.tid},paddress=#{paddress}
+		,pgroup=#{pgroup} where pid=#{pid}
+	</update>
+
+	<!-- 通过pid得到单条照片信息 -->
+	<select id="getPhotoByPid" parameterType="int" resultMap="PhotosMap">
+		select * from Photos ,users ,talks  where pid=#{pid} and puid=uid and ptid=tid
+	</select>
+
+	<!-- 通过puid得到该用户的所有照片） -->
+	<select id="getPhotosByPuid" parameterType="int" resultMap="PhotosMap">
+		select * from Photos ,users ,talks where puid=#{puid} and puid=uid and ptid=tid
+	</select>
+
+
+	<!-- 通过ptid得到该说说的所有照片 -->
+	<select id="getPhotosByPtid" parameterType="int" resultMap="PhotosMap">
+		select * from Photos where ,users ,talks
+		ptid=#{ptid} and puid=uid and ptid=tid
+	</select>
+
+	<!-- 通过puid和Pgroup得到该用户的某个相册的照片 -->
+	<select id="getPhotosByPuidAndPgroup" parameterType="Map"
+		resultMap="PhotosMap">
+		select * from Photos ,users ,talks where 
+		puid=#{puid} and Pgroup=#{pgroup} and puid=uid and ptid=tid
+	</select>
+
+	<!-- 得到该用户的所有pgroup -->
+	<select id="getPgroupByPuid" parameterType="int" resultMap="PhotosMap">
+		select distinct pgroup from Photos ,users ,talks where
+		puid=#{puid} and puid=uid and ptid=tid
+	</select>
+
+</mapper>

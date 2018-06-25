@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slsd.dao.FriendsDao">
+
+	<resultMap type="Friends" id="FriendsMap">
+		<id column="fid" property="fid" />
+		<result property="fnickname" column="fnickname" />
+		<result property="fdegree" column="fdegree" />
+		<result property="fvisttime" column="fvisttime" />
+		<association property="user" javaType="com.slsd.entity.Users">
+			<id property="uid" column="fuid" />
+			<result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+		<association property="user2" javaType="com.slsd.entity.Users">
+			<id property="uid" column="fuid2" />
+			 <result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+
+	</resultMap>
+
+	<!-- 增加好友 -->
+	<insert id="addFriends" parameterType="Friends"
+		useGeneratedKeys="true" keyProperty="fid">
+		insert into Friends
+		values(#{fid},#{user.uid},#{user2.uid},#{fnickname},#{fdegree},#{fvisttime})
+	</insert>
+
+	<!-- 删除好友 -->
+	<delete id="delFriends" parameterType="int">
+		delete from Friends where
+		fid=#{fid}
+	</delete>
+
+	<!-- 更新好友信息 -->
+	<update id="editFriends" parameterType="Friends">
+		update Friends set
+		fuid=#{user.uid},fuid2=#{user2.uid},fnickname=#{fnickname},fdegree=#{fdegree},fvisttime=#{fvisttime}
+		where fid=#{fid}
+	</update>
+
+	<!-- 得到该用户的所有好友信息 -->
+	<select id="getFriendsByFuid" parameterType="int" resultMap="FriendsMap">
+		select * from Friends ,users u1,users u2 where fuid=#{user.uid} and fuid=u1.uid and fuid2=u2.uid
+	</select>
+
+	<!-- 通过fid得到该好友的信息 -->
+	<select id="getFriendsByFid" parameterType="int" resultMap="FriendsMap">
+		select * from Friends ,users u1 ,users u2 where fid=#{fid} and fuid=u1.uid and fuid2=u2.uid
+	</select>
+
+	<!-- 分页得到该用户的所有好友的信息（按最后访问时间排序） -->
+	<select id="getFriendsByPageAndFuidOrderByFvisttime"
+		parameterType="Map" resultMap="FriendsMap">
+		select * from Friends ,users u1 ,users u2 where
+		fuid=#{fuid}
+		order by fvisttime desc limit #{pageStart},#{pageSize} where fuid=u1.uid and fuid2=u2.uid
+	</select>
+
+	<!-- 分页得到该用户的所有好友的信息（按亲密度排序） -->
+	<select id="getFriendsByPageAndFuidOrderByfdegree"
+		parameterType="Map" resultMap="FriendsMap">
+		select * from Friends , ,users u1 ,users u2 where
+		fuid=#{fuid} and  fuid=u1.uid and fuid2=u2.uid
+		order by fdegree desc limit #{pageStart},#{pageSize}
+	</select>
+
+
+
+
+
+
+</mapper>

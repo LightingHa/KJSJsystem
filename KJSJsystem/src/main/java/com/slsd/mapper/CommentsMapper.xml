@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slsd.dao.CommentsDao">
+
+	<resultMap type="Comments" id="CommentsMap">
+		<id column="cid" property="cid" />
+		<result property="ctext" column="ctext" />
+		<result property="cdate" column="cdate" />
+		<association property="users" javaType="com.slsd.entity.Users">
+			<id property="uid" column="cuid" />
+			<result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+		<association property="talk" javaType="com.slsd.entity.Talks">
+			<id property="tid" column="ctid" />
+			<result property="tdate" column="tdate" />
+			<result property="ttext" column="ttext" />
+			<result property="ttype" column="ttype" />
+		</association>
+		<association property="comment" javaType="com.slsd.entity.Comments">
+			<id property="cid" column="creplyid" />
+		</association>
+		
+	</resultMap>
+	<!-- 增加评论 -->
+	<insert id="addComments" parameterType="Comments"
+		useGeneratedKeys="true" keyProperty="cid">
+		insert into Comments 
+		values(#{cid},#{talk.tid},#{users.uid},#{ctext},#{comment.cid},#{cdate})
+	</insert>
+
+	<!-- 删除评论 -->
+	<delete id="delComments" parameterType="int">
+		delete from Comments
+		where
+		cid=#{cid}
+	</delete>
+
+	<!-- 更新评论信息 -->
+	<update id="editComments" parameterType="Comments">
+		update Comments set
+		ctid=#{talk.tid},cuid=#{users.uid},cdate=#{cdate}
+		,ctext=#{ctext},creplyid=#{comment.cid},where cid=#{cid}
+	</update>
+
+	<!-- 通过cid得到单条评论信息 -->
+	<select id="getCommentsByCid" parameterType="int" resultMap="CommentsMap">
+		select * from Comments  ,users ,talks where cid=#{cid} and cuid=uid and ctid=tid
+	</select>
+
+	<!-- 通过ctid得到该评论的所有评论（根据时间排序） -->
+	<select id="getCommentsByCtidOrderByCdate" parameterType="int"
+		resultMap="CommentsMap">
+		select * from Comments ,users ,talks where ctid=#{ctid} and cuid=uid and ctid=tid order by cdate
+		desc
+	</select>
+
+
+	<!-- 通过cuid得到该用户的所有评论（根据时间排序） -->
+	<select id="getCommentsByCuidOrderByCdate" parameterType="int"
+		resultMap="CommentsMap">
+		select * from Comments ,users ,talks where
+		cuid=#{cuid} and cuid=uid and ctid=tid order by cdate
+		desc
+	</select>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slsd.dao.LikesDao">
+
+	<resultMap type="Likes" id="LikesMap">
+		<id column="lid" property="lid" />
+		<result property="ldate" column="ldate" />
+		<association property="user" javaType="com.slsd.entity.Users">
+			<id property="uid" column="luid" />
+			<result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+		<association property="talk" javaType="com.slsd.entity.Talks">
+			<id property="tid" column="ltid" />
+			<result property="tdate" column="tdate" />
+			<result property="ttext" column="ttext" />
+			<result property="ttype" column="ttype" />
+		</association>
+
+
+	</resultMap>
+
+	<!-- 增加点赞 -->
+	<insert id="addLikes" parameterType="Likes" useGeneratedKeys="true"
+		keyProperty="lid">
+		insert into Likes
+		values(#{lid},#{talk.tid},#{user.uid},#{ldate})
+	</insert>
+
+	<!-- 删除点赞 -->
+	<delete id="delLikes" parameterType="int">
+		delete from Likes where
+		lid=#{lid}
+	</delete>
+
+	<!-- 更新点赞信息 -->
+	<update id="editLikes" parameterType="Likes">
+		update Likes set
+		ltid=#{talk.tid},luid=#{user.uid},ldate=#{ldate} where lid=#{lid}
+	</update>
+
+	<!-- 通过lid得到单条点赞信息 -->
+	<select id="getLikesByLid" parameterType="int" resultMap="LikesMap">
+		select * from Likes ,users , talks  where lid=#{lid} and luid=uid and ltid=tid
+	</select>
+
+	<!-- 得到该说说的所有点赞 -->
+	<select id="getLikesByLtid" parameterType="int" resultMap="LikesMap">
+		select * from Likes ,users , talks  where ltid=#{ltid}  and luid=uid and ltid=tid
+	</select>
+
+	<!-- 得到该说说的所有点赞（通过ldate排序） -->
+	<select id="getLikesByLtidOrderByLdate" parameterType="int"
+		resultMap="LikesMap">
+		select * from Likes  ,users , talks  where ltid=#{ltid}  and luid=uid and ltid=tid order by ldate
+	</select>
+
+	<!-- 得到该用户的所有点赞（通过ldate排序） -->
+	<select id="getLikesByLuidOrderByLdate" parameterType="int"
+		resultMap="LikesMap">
+		select * from Likes ,users , talks where
+		luid=#{luid} and luid=uid and ltid=tid order by ldate desc
+	</select>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slsd.dao.TalksDao">
+
+	<resultMap type="Talks" id="TalksMap">
+		<id column="tid" property="tid" />
+		<result property="tdate" column="tdate" />
+		<result property="ttext" column="ttext" />
+		<result property="ttype" column="ttype" />
+		<association property="user" javaType="com.slsd.entity.Users">
+			<id property="uid" column="tuid" />
+			<result property="upwd" column="upwd" />
+			<result property="uname" column="uname" />
+			<result property="umail" column="umail" />
+			<result property="uheadportrait" column="uheadportrait" />
+			<result property="usex" column="usex" />
+			<result property="uage" column="uage" />
+			<result property="ubirthday" column="ubirthday" />
+			<result property="ublood" column="ublood" />
+			<result property="uNowIn" column="uNowIn" />
+			<result property="uhometown" column="uhometown" />
+			<result property="utype" column="utype" />
+		</association>
+	</resultMap>
+
+
+
+	<!-- 增加说说 -->
+	<insert id="addTalks" parameterType="Talks"
+		useGeneratedKeys="true" keyProperty="tid">
+		insert into Talks
+		values(#{tid},#{user.uid},#{tdate},#{ttext},#{ttype})
+	</insert>
+
+	<!-- 删除说说 -->
+	<delete id="delTalks" parameterType="int">
+		delete from Talks where
+		tid=#{tid}
+	</delete>
+
+	<!-- 更新说说信息 -->
+	<update id="editTalks" parameterType="Talks">
+		update Talks set
+		tuid=#{user.uid},tdate=#{tdate},ttext=#{ttext},ttype=#{ttype} where tid=#{tid}
+	</update>
+
+	<!-- 得到该用户的所有说说信息 -->
+	<select id="getTalksByTuid" parameterType="int" resultMap="TalksMap">
+		select * from Talks ,users where tuid=#{tuid} and tuid=uid
+	</select>
+
+	<!-- 通过tid得到该说说的信息 -->
+	<select id="getTalksByTid" parameterType="int" resultMap="TalksMap">
+		select * from Talks ,users where tid=#{tid} and tuid=uid
+	</select>
+
+	<!-- 分页得到该用户的所有说说的信息（按最后访问时间排序） -->
+	<select id="getTalksByPageAndTuidOrderByTdate"
+		parameterType="Map" resultMap="TalksMap">
+		select * from Talks ,users where 
+		tuid=#{tuid} and tuid=uid order by tdate desc limit #{pageStart},#{pageSize}
+	</select>
+	
+</mapper>
