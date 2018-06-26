@@ -79,7 +79,7 @@
                         <li><a href="blog.html">朋友圈</a></li>
                         <li><a href="blog-item.html">说说</a></li>
                         <li class="active"><a href="portfolio.html">留言板</a></li>
-                        <li><a href="pricing.html">个人资料</a></li> 
+                        <li><a href="info?id=1112">个人资料</a></li> 
                         <li><a href="shortcodes.html">相册</a></li>   　　　                    
                     </ul>
                 </div>

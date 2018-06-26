@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%
 	String path = request.getContextPath();
@@ -84,7 +84,7 @@
                         <li><a href="blog.jsp">朋友圈</a></li>
                         <li><a href="blog-item.jsp">说说</a></li>
                         <li><a href="portfolio.jsp">留言板</a></li>
-                        <li class="active"><a href="pricing.jsp">个人资料</a></li> 
+                        <li class="active"><a href="info?id=1112">个人资料</a></li> 
                         <li><a href="shortcodes.jsp">相册</a></li>   　　　                    
                     </ul>
                 </div>
@@ -113,7 +113,7 @@
                 		</div>
                 		<div class="info">
                 			<div class="name">
-                				<h1 style="color: black;">xxx,你好</h1>
+                				<h1 style="color: black;">${users.uname}${a}你好</h1>
                 			</div>
                 			<div class="ininfo">
                 			<form>
